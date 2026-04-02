@@ -1,0 +1,16 @@
+/* Dark mode (enabled by assigning "dark" to the root's className in App.jsx.*/
+.dark .bg-1  {
+    background-color: rgb(170, 183, 255);
+}
+
+.dark .bg-2 {
+    background-color: rgb(237, 232, 255);
+}
+
+.dark .bg-3 {
+    background-color: rgb(237, 232, 255);
+}
+
+.dark .bg-4 {
+    background-color: rgb(170, 183, 255);
+}

@@ -1,0 +1,65 @@
+/* Light mode (default) */
+.bg-1  {
+    background-color: rgb(255, 215, 165);
+}
+
+.bg-2 {
+    background-color: rgb(255, 247, 192);
+}
+
+.bg-3 {
+    background-color: rgb(237, 232, 255);
+}
+
+.bg-4 {
+    background-color: rgb(170, 183, 255);
+}
+
+a {
+    color: black;
+}
+
+a:visited {
+    color: black;
+}
+
+.stripe-1 {
+    background-image: url("/images/patterns/peach-stripe.jpg");
+}
+
+.stripe-2 {
+    background-image: url("/images/patterns/lav-stripe.jpg");
+}
+
+.flip-card:hover .flip-card-front, .flip-card:hover .flip-card-back {
+    background-color: rgb(200, 200, 200);
+    background-blend-mode: screen;
+}
+
+.flip-card-front, .flip-card-back {
+    border: 5px solid rgb(0, 0, 0, 0.15);
+}
+
+.flip-card-front {
+    background-color: rgb(255, 215, 165);
+    background-image: url("../images/patterns/peach-stripe.jpg");
+    color: black;
+}
+
+.flip-card-back {
+    background-color: rgb(170, 183, 255);
+    background-image: url("../images/patterns/lav-stripe.jpg");
+    color: black;
+}
+
+.scroll-button {
+    /*Overriding a lot of the bootstrap stuff with !important */
+    background-color: rgb(170, 183, 255) !important;
+    border-color: rgb(170, 183, 255) !important;
+    color: black !important;
+}
+
+.scroll-button:hover {
+    background-color: rgb(237, 232, 255) !important;
+    border-color: rgb(237, 232, 255) !important;
+}

@@ -1,0 +1,178 @@
+{
+  "decks": [
+    {
+      "id": "1",
+      "category": "math",
+      "name": "geometry",
+      "description": "See if you know the properties of certain shapes.",
+      "questions": [
+        {
+          "front": "How many sides on a triangle?",
+          "back": "3",
+          "star": "false"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "category": "math",
+      "name": "calculus",
+      "description": "See if you know the crazy lingo of calculus!",
+      "questions": [
+        {
+          "front": "What is the mathy word for the rate of change of a function?",
+          "back": "derivative",
+          "star": "false"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "category": "games",
+      "name": "terraria",
+      "description": "A handful of trivia blurbs from one of my favorite games!",
+      "questions": [
+        {
+          "front": "Which boss triggers hardmode once defeated?",
+          "back": "Wall of Flesh",
+          "star": "false"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "category": "games",
+      "name": "spelunky 2 worlds",
+      "description": "Given some details about a level, your task is to tell me what world that level is on!",
+      "questions": [
+        {
+          "front": "I've just acquired excalibur. Where am I?",
+          "back": "Tidepool",
+          "star": "false"
+        },
+        {
+          "front": "A giant otherworldly jellyfish just vaporized me. Where am I?",
+          "back": "Cosmic Ocean",
+          "star": "false"
+        },
+        {
+          "front": "I got sacrificed on the altar in the city of gold, but I'm getting revived because I found the ankh. Where am I going?",
+          "back": "Duat",
+          "star": "false"
+        },
+        {
+          "front": "King Yama is in front of me. Where am I?",
+          "back": "Eggplant World",
+          "star": "false"
+        }
+      ]
+    }
+  ],
+  "metadata": [
+    {
+      "recentIds": [
+        "4",
+        "1",
+        "3"
+      ],
+      "id": "1"
+    },
+    {
+      "recentIds": [
+        5,
+        6,
+        7
+      ],
+      "id": "IG2P-F4"
+    },
+    {
+      "recentIds": [
+        5,
+        6,
+        7
+      ],
+      "id": "eMBeOQo"
+    },
+    {
+      "recentIds": [
+        6,
+        7,
+        8
+      ],
+      "id": "MzVOvw4"
+    },
+    {
+      "recentIds": [
+        5,
+        6,
+        7
+      ],
+      "id": "rt9ZL2T"
+    },
+    {
+      "recentIds": [
+        6,
+        7,
+        8
+      ],
+      "id": "zK_9yMw"
+    },
+    {
+      "recentIds": [
+        7,
+        8,
+        9
+      ],
+      "id": "G2XnmPU"
+    },
+    {
+      "recentIds": [
+        5,
+        6,
+        7
+      ],
+      "id": "KrJMhk1"
+    },
+    {
+      "recentIds": [
+        6,
+        7,
+        8
+      ],
+      "id": "xjcQnpd"
+    },
+    {
+      "recentIds": [
+        5,
+        6,
+        7
+      ],
+      "id": "PhnalSe"
+    },
+    {
+      "recentIds": [
+        5,
+        6,
+        7
+      ],
+      "id": "2JDhfQV"
+    },
+    {
+      "recentIds": [
+        5,
+        6,
+        7
+      ],
+      "id": "IHi3Svc"
+    }
+  ],
+  "defaults": [
+    {
+      "light-mode": true,
+      "front-side-first": true,
+      "shuffled": true,
+      "starred-only": true,
+      "id": "1"
+    }
+  ]
+}

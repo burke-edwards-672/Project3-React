@@ -1,0 +1,49 @@
+/* Colors that are unchanged by light/dark mode */
+
+.day-1 {
+    background-color: rgb(255, 215, 165);
+}
+
+.day-2 {
+    background-color: rgb(255, 247, 192);
+}
+
+.night-1 {
+    background-color: rgb(237, 232, 255);
+}
+
+.night-2 {
+    background-color: rgb(170, 183, 255);
+}
+
+.peach-stripe {
+    background-image: url("/images/patterns/peach-stripe.jpg");
+}
+
+.lav-stripe {
+    background-image: url("/images/patterns/lav-stripe.jpg");
+}
+
+.upcoming {
+    background-color: rgb(73, 71, 95);
+}
+
+.upcoming h2 {
+    color: rgb(255, 247, 192);
+}
+
+.upcoming h3 {
+    color: rgb(255, 247, 192);
+}
+
+.upcoming p {
+    color: rgb(255, 215, 165);
+}
+
+.upcoming hr {
+    border-color: rgb(255, 247, 192);
+}
+
+.upcoming li {
+    color: rgb(255, 215, 165)
+}
