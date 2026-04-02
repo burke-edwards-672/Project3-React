@@ -73,7 +73,7 @@ export default function Home({ sorter, recents }) {
                     pic="/images/icons/plus.jpg"
                     label="New Deck"
                     onClick={() => {
-                        navigate("/PageNotFound");
+                        navigate("/Edit");
                     }}
                     />
 
