@@ -31,34 +31,11 @@ function App() {
   }, [])
 
   async function loadRecents() {
-    //Need to setRecent conditionally, so that it only does it if the deck exists.
-    //It's very easy to store an ID that doesn't pertain to a deck.
-    //All the relevant pages treat that as a given, so make it a given!!!
-    //I am so incredibly confused by the order of execution that react is doing on this function.
-    //Reads the metadata properly as [1, 3, 4]. Gets to the for loop:
-    //1
-    //1
-    //3
-    //3
-    //4
-    //all done with for loop
-    //4
-    //all done with for loop
-    //I think I get it. It sort of runs the two sequences in parallel, so they alternate steps.
-    //The "finishing for loop" thing is kind of glued to the 4 since it doesn't take extra time.
-    //Still, can't figure out for the LIFE of me why the state lags behind by an iteration?
-    //My absolute best guess, 51 hours after this was meant to be due, is that the process of updating state is also asynchronous.
-    //If I get the variable immediately after I update it, of course it's not gonna have gone through yet.
-    //I mean it's working now, but I'm pretty annoyed cuz it was having that lag-behind problem a second ago and IDK WHY!!!!
     const recentDecks = [];
     const metadata = await api.getMetadata();
     for (let id of metadata.recentIds) {
       const deck = await api.getDeck(id);
-      if (deck) {
-        recentDecks.push(deck);
-      } else {
-        recentDecks.push({});
-      }
+      recentDecks.push(deck || {});
     }
     setRecent(recentDecks);
   }
@@ -69,13 +46,11 @@ function App() {
     const recents = (await api.getMetadata()).recentIds;
     const newRecentIds = updateRecents(id, recents);
     for (let id of newRecentIds) {
-      recentDecks.push(await api.getDeck(id));
+      recentDecks.push(await api.getDeck(id) || {});
     }
 
-    console.log(recentDecks);
-    console.log(recents);
     setRecent(recentDecks);
-    api.putMetadata({recentIds: newRecentIds})
+    api.putMetadata({recentIds: newRecentIds});
   }
 
   return (

@@ -7,25 +7,26 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import EditCard from "../components/edit-card";
 
-export default function Edit() {
+export default function Edit( {recents} ) {
     let navigate = useNavigate();
 
     const [questions, setQuestions] = useState([]);
     const [newQuestionId, setNewQuestionId] = useState(0);
-    const [deck, setDeck] = useState({});
+    const [deck, setDeck] = useState({...recents[0]});
 
     //When I learned that [] makes this only run on the initial render, I thought that was just the initial render of the website.
     //Nope! It goes every time the whole thing pops up. That's incredibly useful. I can make this code so much cleaner knowing that.
     useEffect(() => {
         (async () => {
             const metadata = await api.getMetadata();
-            const deck = await api.getDeck(metadata.recentIds[0]);
-            setQuestions(deck.questions);
+            const mainDeck = await api.getDeck(metadata.recentIds[0]);
+            setQuestions(mainDeck.questions);
             setQuestions(questions => keyQuestions(questions));
-            setNewQuestionId(deck.questions.length);
-            setDeck(deck);
+            setNewQuestionId(mainDeck.questions.length);
+            setDeck(mainDeck);
+            console.log(recents);
         })();
-    }, [])
+    }, [recents])
 
     function appendQuestion() {
         const key = `Q ${newQuestionId}`;
@@ -89,7 +90,7 @@ export default function Edit() {
             <main>
 
             </main>
-            <button onClick={saveDeck}>Save</button>
+            <button onClick={saveDeck}>Save Deck</button>
             <button onClick={appendQuestion}><img src="/images/icons/plus.jpg" /></button>
             {mapQuestions()}
             <Footer />

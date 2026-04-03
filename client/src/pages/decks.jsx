@@ -15,13 +15,18 @@ export default function Decks({ sorter, recentSetter }) {
 
     async function makeDummyDeck() {
         await api.postDeck({
-            category: "nothing",
-            name: `test ${count}`,
-            description: "Very naice!!!",
+            category: "...",
+            name: `Unnamed Deck`,
+            description: "...",
             questions: []
         });
-        increment(count + 1);
         loadDecks();
+        const allDecks = (await api.getDecks());
+        const newDeck = allDecks[allDecks.length - 1];
+        if (newDeck) {
+            sorter(newDeck.id);
+            navigate("/Edit");
+        }
     }
 
     async function deleteDeck(id) {
@@ -40,7 +45,8 @@ export default function Decks({ sorter, recentSetter }) {
     }
 
     function makeDecks() {
-        return decks.map((deck) => {
+        const reversedDecks = decks.toReversed();
+        return reversedDecks.map((deck) => {
             return (
                 <Deck 
                 key={deck.id}
