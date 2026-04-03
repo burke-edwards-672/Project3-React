@@ -44,6 +44,13 @@ export const api = {
         },
         body: JSON.stringify(deck)
     }),
+    putDeck: (deck, id) => fetchJson(`/decks/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(deck)
+    }),
     deleteDeck: (id) => fetchJson(`/decks/${id}`, {
         method: "DELETE"
     })
