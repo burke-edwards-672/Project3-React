@@ -60,7 +60,6 @@ function App() {
         <Route path="/Decks" element={<Decks sorter={reorderRecents} recentSetter={loadRecents}/>} />
         <Route path="/View" element={<View recents={recent} loadRecents={loadRecents} />} />
         <Route path="/Edit" element={<Edit recents={recent} recentSetter={loadRecents}/>} />
-        <Route path="/Settings" element={<Settings />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>

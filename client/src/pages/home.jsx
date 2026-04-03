@@ -3,6 +3,7 @@
 import Panel from "../components/panel";
 import PanelItem from "../components/panel-item";
 import { useNavigate } from "react-router";
+import { api } from "../lib/api.js";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -44,6 +45,21 @@ export default function Home({ sorter, recents }) {
         })
     }
 
+    async function gotoNewDeck() {
+        await api.postDeck({
+            category: "...",
+            name: `Unnamed Deck`,
+            description: "...",
+            questions: []
+        });
+        const allDecks = (await api.getDecks());
+        const newDeck = allDecks[allDecks.length - 1];
+        if (newDeck) {
+            sorter(newDeck.id);
+            navigate("/Edit");
+        }
+    }
+
     return (
         <>
             <Header />
@@ -72,9 +88,7 @@ export default function Home({ sorter, recents }) {
                     className="card m-2 lav-stripe create-deck"
                     pic="/images/icons/plus.jpg"
                     label="New Deck"
-                    onClick={() => {
-                        navigate("/Edit");
-                    }}
+                    onClick={gotoNewDeck}
                     />
 
                     <PanelItem 
@@ -82,7 +96,7 @@ export default function Home({ sorter, recents }) {
                     pic="/images/fonty/chill.jpg"
                     label="All Categories"
                     onClick={() => {
-                        navigate("/PageNotFound");
+                        navigate("/Categories");
                     }}
                     />
                 </Panel>

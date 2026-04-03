@@ -32,7 +32,6 @@ export default function Deck({ name, desc, id, sorter, loader, deleter }) {
                 <button type="button" className="btn"><img src="/images/icons/delete.png" height="50" title="delete"
                 onClick={(e) => {
                     e.stopPropagation();
-                    alert("DELETING!! Are you sure???");
                     deleteDeck();
                 }} /></button>
             </div>

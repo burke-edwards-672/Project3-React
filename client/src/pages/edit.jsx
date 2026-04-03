@@ -81,7 +81,7 @@ export default function Edit( {recents, recentSetter} ) {
         const newDeck = {...deck, questions: questions};
         await api.putDeck(newDeck, newDeck.id || "");
         recentSetter();
-        //navigate("/View");
+        navigate("/View");
     }
 
     function updateDeckInfo(formData) {
