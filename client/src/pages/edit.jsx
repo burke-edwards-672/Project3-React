@@ -7,12 +7,13 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import EditCard from "../components/edit-card";
 
-export default function Edit( {recents} ) {
+export default function Edit( {recents, recentSetter} ) {
     let navigate = useNavigate();
 
     const [questions, setQuestions] = useState([]);
     const [newQuestionId, setNewQuestionId] = useState(0);
     const [deck, setDeck] = useState({...recents[0]});
+    const [infoForm, toggleInfoForm] = useState(false);
 
     //When I learned that [] makes this only run on the initial render, I thought that was just the initial render of the website.
     //Nope! It goes every time the whole thing pops up. That's incredibly useful. I can make this code so much cleaner knowing that.
@@ -24,7 +25,6 @@ export default function Edit( {recents} ) {
             setQuestions(questions => keyQuestions(questions));
             setNewQuestionId(mainDeck.questions.length);
             setDeck(mainDeck);
-            console.log(recents);
         })();
     }, [recents])
 
@@ -40,8 +40,6 @@ export default function Edit( {recents} ) {
     }
 
     function modifyQuestion(newQuestion) {
-        console.log("editing!!!");
-        console.log(newQuestion);
         setQuestions(questions.map(q => {
             if (q.key === newQuestion.key) {
                 return newQuestion;
@@ -78,21 +76,59 @@ export default function Edit( {recents} ) {
         })
     }
 
-    function saveDeck() {
+    async function saveDeck() {
         const newDeck = {...deck, questions: questions};
-        api.putDeck(newDeck, newDeck.id || "");
+        await api.putDeck(newDeck, newDeck.id || "");
         alert("Updated the deck!!!");
+        recentSetter();
         //navigate("/View");
     }
+
+    function updateDeckInfo(formData) {
+        alert("Updating deck info!!!");
+        const formObject = Object.fromEntries(formData.entries());
+        
+        setDeck({
+            ...deck,
+            name: formObject.deckName,
+            category: formObject.deckCategory,
+            description: formObject.deckDesc
+        })
+        toggleInfoForm(false);
+
+    }
+
+    function deckInfo() {
+        if (infoForm) {
+            return (
+                <form action={updateDeckInfo}>
+                    <input name="deckName" defaultValue={deck.name || "..."} />
+                    <input name="deckCategory" defaultValue={deck.category || "..."} />
+                    <textarea name="deckDesc" defaultValue={deck.description || "..."} />
+                    <button type="submit">Save Deck Info</button>
+                </form>
+            );
+        } else {
+            return (
+                <>
+                    <p>Name: {deck.name || "..."}</p>
+                    <p>Category: {deck.category || "..."}</p>
+                    <p>Desc: {deck.description || "..."}</p>
+                    <button onClick={() => {toggleInfoForm(true)}}>Edit Deck Info</button>
+                </>
+            );
+        }
+    }
+    
     return (
         <>
             <Header />
             <main>
-
+                {deckInfo()}
+                <button onClick={saveDeck}>Save Deck</button>
+                <button onClick={appendQuestion}><img src="/images/icons/plus.jpg" /></button>
+                {mapQuestions()}
             </main>
-            <button onClick={saveDeck}>Save Deck</button>
-            <button onClick={appendQuestion}><img src="/images/icons/plus.jpg" /></button>
-            {mapQuestions()}
             <Footer />
         </>
     )
