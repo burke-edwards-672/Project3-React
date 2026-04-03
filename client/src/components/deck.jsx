@@ -5,8 +5,6 @@ export default function Deck({ name, desc, id, sorter, loader, deleter }) {
 
     function deleteDeck() {
         deleter(id)
-        console.log("Delete successful!!!");
-        alert("IT'S GONE!!!!");
     }
 
     return (

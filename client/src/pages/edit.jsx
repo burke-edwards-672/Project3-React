@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { api } from "../lib/api.js";
 
+import Card from "react-bootstrap/Card";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import EditCard from "../components/edit-card";
@@ -79,13 +80,11 @@ export default function Edit( {recents, recentSetter} ) {
     async function saveDeck() {
         const newDeck = {...deck, questions: questions};
         await api.putDeck(newDeck, newDeck.id || "");
-        alert("Updated the deck!!!");
         recentSetter();
         //navigate("/View");
     }
 
     function updateDeckInfo(formData) {
-        alert("Updating deck info!!!");
         const formObject = Object.fromEntries(formData.entries());
         
         setDeck({
@@ -101,21 +100,30 @@ export default function Edit( {recents, recentSetter} ) {
     function deckInfo() {
         if (infoForm) {
             return (
-                <form action={updateDeckInfo}>
-                    <input name="deckName" defaultValue={deck.name || "..."} />
-                    <input name="deckCategory" defaultValue={deck.category || "..."} />
-                    <textarea name="deckDesc" defaultValue={deck.description || "..."} />
-                    <button type="submit">Save Deck Info</button>
+                <form className="edit-deck-info" action={updateDeckInfo}>
+                    <div className="edit-deck-info-row">
+                        <label for="deckName">Name</label>
+                        <input id="deckName" name="deckName" defaultValue={deck.name || "..."} />
+                    </div>
+                    <div className="edit-deck-info-row">
+                        <label for="deckCategory">Category</label>
+                        <input id="deckCategory" name="deckCategory" defaultValue={deck.category || "..."} />
+                    </div>
+                    <div className="edit-deck-info-row">
+                        <label for="deckDesc">Description</label>
+                        <textarea id="deckDesc" name="deckDesc" defaultValue={deck.description || "..."} />
+                    </div>
+                    <button type="submit" className="edit-info-btn save-btn">Save Deck Info</button>
                 </form>
             );
         } else {
             return (
-                <>
-                    <p>Name: {deck.name || "..."}</p>
-                    <p>Category: {deck.category || "..."}</p>
-                    <p>Desc: {deck.description || "..."}</p>
-                    <button onClick={() => {toggleInfoForm(true)}}>Edit Deck Info</button>
-                </>
+                <div className="static-deck-info">
+                    <h1>{deck.name || "..."}</h1>
+                    <h2>Category: {deck.category || "..."}</h2>
+                    <h3>{deck.description || "..."}</h3>
+                    <button className="edit-info-btn edit-btn" onClick={() => {toggleInfoForm(true)}}>Edit Deck Info</button>
+                </div>
             );
         }
     }
@@ -123,11 +131,33 @@ export default function Edit( {recents, recentSetter} ) {
     return (
         <>
             <Header />
-            <main>
+            <main id="edit">
                 {deckInfo()}
-                <button onClick={saveDeck}>Save Deck</button>
-                <button onClick={appendQuestion}><img src="/images/icons/plus.jpg" /></button>
+                <img src="/images/illustrations/sun.png" style={{margin: "auto", display: "block"}}/>
                 {mapQuestions()}
+                <div className="confirm-btns">
+                    <div className="confirm-card">
+                        <button onClick={saveDeck} className="central-btn">
+                            <Card>
+                                <Card.Img variant="top" src="/images/fonty/toothy.jpg" />
+                                <Card.Body>
+                                    <Card.Title>Save Deck</Card.Title>
+                                </Card.Body>
+                            </Card>
+                        </button>
+                    </div>
+
+                    <div className="confirm-card">
+                        <button onClick={appendQuestion} className="central-btn">
+                            <Card>
+                                <Card.Img variant="top" src="/images/icons/plus.jpg" />
+                                <Card.Body>
+                                    <Card.Title>Add New Card</Card.Title>
+                                </Card.Body>
+                            </Card>
+                        </button>
+                    </div>
+                </div>
             </main>
             <Footer />
         </>

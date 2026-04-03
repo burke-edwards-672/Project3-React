@@ -1,4 +1,7 @@
 import { useState } from "react";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 export default function EditCard({ index, front, back, id, edit, remove}) {
     const [isModifying, toggleModify] = useState(false);
@@ -16,20 +19,44 @@ export default function EditCard({ index, front, back, id, edit, remove}) {
 
     if (isModifying) return (
         <form className="edit-card" onSubmit={saveChanges}>
-            <textarea name="front" defaultValue={front} />
-            <textarea name="back" defaultValue={back} />
-            <p>{index}</p>
-            <button name="Save" type="submit">Save</button>
-            <button name="Delete" type="button" onClick={remove}>Delete</button>
+            <Container>
+                <Row className="lav-stripe edit-card-row">
+                    <Col xs="1">
+                        <h2>{index + 1}:</h2>
+                    </Col>
+                    <Col>
+                        <textarea className="night-1" name="front" defaultValue={front} />
+                    </Col>
+                    <Col>
+                        <textarea className="night-1" name="back" defaultValue={back} />
+                    </Col>
+                    <Col xs="2">
+                        <button name="Save" className="save-btn" type="submit">Save</button>
+                        <button name="Delete" className="delete-btn" type="button" onClick={remove}>Delete</button>
+                    </Col>
+                </Row>
+            </Container>
         </form>
     );
     return (
             <div className="edit-card">
-                <p>{front}</p>
-                <p>{back}</p>
-                <p>{index}</p>
-                <button name="Edit" type="button" onClick={() => {toggleModify(true);}}>Edit</button>
-                <button name="Delete" type="button" onClick={remove}>Delete</button>
+                <Container>
+                    <Row className="edit-card-row peach-stripe">
+                        <Col xs="1">
+                            <h2>{index + 1}:</h2>
+                        </Col>
+                        <Col>
+                            <p>{front}</p>
+                        </Col>
+                        <Col>
+                            <p>{back}</p>
+                        </Col>
+                        <Col xs="2">
+                            <button name="Edit" className="edit-btn" type="button" onClick={() => {toggleModify(true);}}>Edit</button>
+                            <button name="Delete" className="delete-btn" type="button" onClick={remove}>Delete</button>
+                        </Col>
+                    </Row>
+                </Container>
             </div>
     )
 }
