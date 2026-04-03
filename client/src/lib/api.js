@@ -7,6 +7,7 @@ if (!API_BASE_URL) {
 }
 
 async function fetchJson(path, options) {
+    console.log(`fetching from ${API_BASE_URL}`)
     try {
         const response = await fetch(`${API_BASE_URL}${path}`, options);
         if (!response.ok) {
